@@ -15,15 +15,21 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          
+
       - name: Install dependencies
         run: npm install
-        
+
+      # Build your Next.js project
       - name: Build
         run: npm run build
-        
+
+      # Export to static HTML (creates the "out" folder by default)
+      - name: Export
+        run: npm run export
+
+      # Deploy the "out" directory to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./out
