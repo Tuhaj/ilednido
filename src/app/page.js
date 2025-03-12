@@ -23,7 +23,7 @@ export default function Home() {
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
       const milliseconds = difference % 1000;
 
-      setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s ${milliseconds}ms`);
+      setTimeLeft(`${days}d ${hours}h ${minutes}m ${seconds}s ${milliseconds.toString().padStart(3, '0')}ms`);
     }, 1);
 
     return () => clearInterval(timer);
