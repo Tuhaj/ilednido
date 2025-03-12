@@ -3,8 +3,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/ilednido' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/ilednido/' : '',
+  basePath: '',
+  assetPrefix: '',
 };
 
 // Use ESM default export
