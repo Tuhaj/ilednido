@@ -3,10 +3,40 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState('');
-  const [currentDate, setCurrentDate] = useState('2025-05-07T00:00:00');
+  const [timers, setTimers] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('timers');
+      return saved ? JSON.parse(saved) : [
+        { name: 'Urodziny Leona', date: '2025-05-07T00:00:00' },
+        { name: 'Urodziny Aleksandra', date: '2025-06-27T00:00:00' },
+        { name: 'Pierwszy dzień szkoły', date: '2025-09-02T00:00:00' }
+      ];
+    }
+    return [
+      { name: 'Urodziny Leona', date: '2025-05-07T00:00:00' },
+      { name: 'Urodziny Aleksandra', date: '2025-06-27T00:00:00' },
+      { name: 'Pierwszy dzień szkoły', date: '2025-09-02T00:00:00' }
+    ];
+  });
+  const [currentTimerIndex, setCurrentTimerIndex] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('currentTimerIndex');
+      return saved ? parseInt(saved) : 0;
+    }
+    return 0;
+  });
 
   useEffect(() => {
-    const targetDate = new Date(currentDate);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('timers', JSON.stringify(timers));
+      localStorage.setItem('currentTimerIndex', currentTimerIndex.toString());
+    }
+  }, [timers, currentTimerIndex]);
+
+  useEffect(() => {
+    if (!timers.length) return;
+    
+    const targetDate = new Date(timers[currentTimerIndex].date);
     
     const timer = setInterval(() => {
       const now = new Date();
@@ -28,34 +58,51 @@ export default function Home() {
     }, 1);
 
     return () => clearInterval(timer);
-  }, [currentDate]);
+  }, [timers, currentTimerIndex]);
 
-  const toggleDate = () => {
-    if (currentDate === '2025-05-07T00:00:00') {
-      setCurrentDate('2025-06-27T00:00:00');
-    } else if (currentDate === '2025-06-27T00:00:00') {
-      setCurrentDate('2025-09-02T00:00:00');
-    } else {
-      setCurrentDate('2025-05-07T00:00:00');
+  const toggleTimer = () => {
+    setCurrentTimerIndex((prev) => (prev + 1) % timers.length);
+  };
+
+  const editTimer = () => {
+    const newName = prompt('Wprowadź nową nazwę:', timers[currentTimerIndex].name);
+    const newDate = prompt('Wprowadź nową datę (RRRR-MM-DDThh:mm:ss):', timers[currentTimerIndex].date);
+    
+    if (newName && newDate) {
+      setTimers(prev => {
+        const newTimers = [...prev];
+        newTimers[currentTimerIndex] = { name: newName, date: newDate };
+        return newTimers;
+      });
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-      <h1 className="text-3xl font-semibold">
-        {currentDate === '2025-05-07T00:00:00' 
-          ? 'Urodziny Leona będą za' 
-          : currentDate === '2025-06-27T00:00:00'
-            ? 'Urodziny Aleksandra będą za'
-            : 'Pierwszy dzień szkoły będzie za'}
-      </h1>
-      <div className="text-4xl font-bold font-mono">{timeLeft}</div>
-      <button 
-        onClick={toggleDate}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-      >
-        Przełącz Timer
-      </button>
+      {timers.length > 0 ? (
+        <>
+          <h1 className="text-3xl font-semibold">
+            {timers[currentTimerIndex].name} za
+          </h1>
+          <div className="text-4xl font-bold font-mono">{timeLeft}</div>
+          <div className="flex gap-2">
+            <button 
+              onClick={toggleTimer}
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            >
+              Przełącz Timer
+            </button>
+            <button 
+              onClick={editTimer}
+              className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+            >
+              Edytuj Timer
+            </button>
+          </div>
+        </>
+      ) : (
+        <div>No timers available</div>
+      )}
     </div>
   );
 }
