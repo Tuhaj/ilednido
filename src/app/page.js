@@ -1,3 +1,4 @@
+// This component must be client-side only to handle localStorage and timers
 'use client';
 import { useState, useEffect } from "react";
 
@@ -7,15 +8,15 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('timers');
       return saved ? JSON.parse(saved) : [
-        { name: 'Urodziny Leona', date: '2025-05-07T00:00:00' },
-        { name: 'Urodziny Aleksandra', date: '2025-06-27T00:00:00' },
-        { name: 'Pierwszy dzień szkoły', date: '2025-09-02T00:00:00' }
+        { name: "Leon's birthday", date: '2025-05-07T00:00:00' },
+        { name: "Aleksander's birthday", date: '2025-06-27T00:00:00' },
+        { name: "First school day", date: '2025-09-02T00:00:00' }
       ];
     }
     return [
-      { name: 'Urodziny Leona', date: '2025-05-07T00:00:00' },
-      { name: 'Urodziny Aleksandra', date: '2025-06-27T00:00:00' },
-      { name: 'Pierwszy dzień szkoły', date: '2025-09-02T00:00:00' }
+      { name: "Leon's birthday", date: '2025-05-07T00:00:00' },
+      { name: "Aleksander's birthday", date: '2025-06-27T00:00:00' },
+      { name: "First school day", date: '2025-09-02T00:00:00' }
     ];
   });
   const [currentTimerIndex, setCurrentTimerIndex] = useState(() => {
@@ -65,8 +66,8 @@ export default function Home() {
   };
 
   const editTimer = () => {
-    const newName = prompt('Wprowadź nową nazwę:', timers[currentTimerIndex].name);
-    const newDate = prompt('Wprowadź nową datę (RRRR-MM-DDThh:mm:ss):', timers[currentTimerIndex].date);
+    const newName = prompt('Enter new name:', timers[currentTimerIndex].name);
+    const newDate = prompt('Enter new date (YYYY-MM-DDThh:mm:ss):', timers[currentTimerIndex].date);
     
     if (newName && newDate) {
       setTimers(prev => {
@@ -78,8 +79,8 @@ export default function Home() {
   };
 
   const addNewTimer = () => {
-    const newName = prompt('Wprowadź nazwę nowego timera:');
-    const newDate = prompt('Wprowadź datę (RRRR-MM-DDThh:mm:ss):');
+    const newName = prompt('Enter new timer name:');
+    const newDate = prompt('Enter date (YYYY-MM-DDThh:mm:ss):');
     
     if (newName && newDate) {
       setTimers(prev => [...prev, { name: newName, date: newDate }]);
@@ -88,7 +89,7 @@ export default function Home() {
   };
 
   const deleteTimer = () => {
-    if (window.confirm('Czy na pewno chcesz usunąć ten timer?')) {
+    if (window.confirm('Are you sure you want to delete this timer?')) {
       setTimers(prev => {
         const newTimers = prev.filter((_, index) => index !== currentTimerIndex);
         return newTimers;
@@ -102,7 +103,7 @@ export default function Home() {
       {timers.length > 0 ? (
         <>
           <h1 className="text-3xl font-semibold">
-            {timers[currentTimerIndex].name} za
+            {timers[currentTimerIndex].name} in
           </h1>
           <div className="text-4xl font-bold font-mono">{timeLeft}</div>
           <div className="flex gap-2">
@@ -110,18 +111,18 @@ export default function Home() {
               onClick={toggleTimer}
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
             >
-              Przełącz Timer
+              Switch Timer
             </button>
             <button 
               onClick={editTimer}
               className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
             >
-              Edytuj Timer
+              Edit Timer
             </button>
             <button 
               onClick={() => {
-                const newName = prompt('Wprowadź nazwę nowego timera:');
-                const newDate = prompt('Wprowadź datę (RRRR-MM-DD):');
+                const newName = prompt('Enter new timer name:');
+                const newDate = prompt('Enter date (YYYY-MM-DD):');
                 
                 if (newName && newDate) {
                   const fullDate = `${newDate}T00:00:00`;
@@ -131,13 +132,13 @@ export default function Home() {
               }}
               className="mt-4 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors"
             >
-              Dodaj Timer
+              Add Timer
             </button>
             <button 
               onClick={deleteTimer}
               className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
             >
-              Usuń Timer
+              Delete Timer
             </button>
           </div>
         </>
