@@ -40,13 +40,3 @@ h1 {
   overflow-wrap: break-word;
   justify-content: center;
 }
-
-@media (max-width: 640px) {
-  body {
-    padding: 0.5rem;
-  }
-  
-  h1 {
-    font-size: 1.5rem;
-  }
-}

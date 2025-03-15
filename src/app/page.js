@@ -99,37 +99,37 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-2 p-4 sm:pt-4 pt-0">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-1 p-2 sm:gap-2 sm:p-4">
       {timers.length > 0 ? (
         <>
           <div 
             className="flex flex-col items-center cursor-pointer hover:text-blue-500 transition-colors"
             onClick={toggleTimer}
           >
-            <p className="text-sm">({currentTimerIndex + 1}/{timers.length})</p>
-            <div className="flex items-center gap-2">
-              <h1 className="text-2xl sm:text-3xl font-semibold">
+            <div className="flex items-center gap-1 sm:gap-2">
+              <h1 className="text-xl sm:text-3xl font-semibold">
                 {timers[currentTimerIndex].name}
               </h1>
             </div>
-            <div className="text-3xl sm:text-4xl font-bold font-mono mt-1">{timeLeft}</div>
+            <div className="text-2xl sm:text-4xl font-bold font-mono mt-0.5 sm:mt-1">{timeLeft}</div>
+            <p className="text-sm">({currentTimerIndex + 1}/{timers.length})</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-2 mt-2">
+          <div className="flex flex-wrap justify-center gap-1 mt-1 sm:gap-2 sm:mt-2">
             <button 
               onClick={editTimer}
-              className="px-3 py-1.5 bg-green-700 text-white text-sm rounded hover:bg-green-800 transition-colors"
+              className="px-2 py-1 sm:px-3 sm:py-1.5 bg-green-700 text-white text-sm rounded hover:bg-green-800 transition-colors"
             >
               Edit
             </button>
             <button 
               onClick={addNewTimer}
-              className="px-3 py-1.5 bg-purple-700 text-white text-sm rounded hover:bg-purple-800 transition-colors"
+              className="px-2 py-1 sm:px-3 sm:py-1.5 bg-purple-700 text-white text-sm rounded hover:bg-purple-800 transition-colors"
             >
               Add
             </button>
             <button 
               onClick={deleteTimer}
-              className="px-3 py-1.5 bg-red-700 text-white text-sm rounded hover:bg-red-800 transition-colors"
+              className="px-2 py-1 sm:px-3 sm:py-1.5 bg-red-700 text-white text-sm rounded hover:bg-red-800 transition-colors"
             >
               Delete
             </button>
@@ -138,7 +138,7 @@ export default function Home() {
       ) : (
         <div>No timers available</div>
       )}
-      <footer className="fixed bottom-0 w-full p-4 text-center text-sm">
+      <footer className="fixed bottom-0 w-full p-2 sm:p-4 text-center text-sm">
         <a href="https://piotrzientara.pl" className="hover:text-gray-700 transition-colors">
           © Piotr Zientara
         </a>
