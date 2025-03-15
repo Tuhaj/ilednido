@@ -67,12 +67,12 @@ export default function Home() {
 
   const editTimer = () => {
     const newName = prompt('Enter new name:', timers[currentTimerIndex].name);
-    const newDate = prompt('Enter new date (YYYY-MM-DDThh:mm:ss):', timers[currentTimerIndex].date);
+    const newDate = prompt('Enter new date (YYYY-MM-DD):', timers[currentTimerIndex].date.split('T')[0]);
     
     if (newName && newDate) {
       setTimers(prev => {
         const newTimers = [...prev];
-        newTimers[currentTimerIndex] = { name: newName, date: newDate };
+        newTimers[currentTimerIndex] = { name: newName, date: `${newDate}T00:00:00` };
         return newTimers;
       });
     }
@@ -80,10 +80,10 @@ export default function Home() {
 
   const addNewTimer = () => {
     const newName = prompt('Enter new timer name:');
-    const newDate = prompt('Enter date (YYYY-MM-DDThh:mm:ss):');
+    const newDate = prompt('Enter date (YYYY-MM-DD):');
     
     if (newName && newDate) {
-      setTimers(prev => [...prev, { name: newName, date: newDate }]);
+      setTimers(prev => [...prev, { name: newName, date: `${newDate}T00:00:00` }]);
       setCurrentTimerIndex(timers.length);
     }
   };
@@ -117,16 +117,7 @@ export default function Home() {
               Edit Timer
             </button>
             <button 
-              onClick={() => {
-                const newName = prompt('Enter new timer name:');
-                const newDate = prompt('Enter date (YYYY-MM-DD):');
-                
-                if (newName && newDate) {
-                  const fullDate = `${newDate}T00:00:00`;
-                  setTimers(prev => [...prev, { name: newName, date: fullDate }]);
-                  setCurrentTimerIndex(timers.length);
-                }
-              }}
+              onClick={addNewTimer}
               className="mt-4 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors"
             >
               Add Timer
