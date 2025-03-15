@@ -77,6 +77,16 @@ export default function Home() {
     }
   };
 
+  const addNewTimer = () => {
+    const newName = prompt('Wprowadź nazwę nowego timera:');
+    const newDate = prompt('Wprowadź datę (RRRR-MM-DDThh:mm:ss):');
+    
+    if (newName && newDate) {
+      setTimers(prev => [...prev, { name: newName, date: newDate }]);
+      setCurrentTimerIndex(timers.length);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4">
       {timers.length > 0 ? (
@@ -97,6 +107,21 @@ export default function Home() {
               className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
             >
               Edytuj Timer
+            </button>
+            <button 
+              onClick={() => {
+                const newName = prompt('Wprowadź nazwę nowego timera:');
+                const newDate = prompt('Wprowadź datę (RRRR-MM-DD):');
+                
+                if (newName && newDate) {
+                  const fullDate = `${newDate}T00:00:00`;
+                  setTimers(prev => [...prev, { name: newName, date: fullDate }]);
+                  setCurrentTimerIndex(timers.length);
+                }
+              }}
+              className="mt-4 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors"
+            >
+              Dodaj Timer
             </button>
           </div>
         </>
