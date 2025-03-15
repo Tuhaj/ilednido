@@ -136,7 +136,15 @@ export default function Home() {
           </div>
         </>
       ) : (
-        <div>No timers available</div>
+        <div className="flex flex-col items-center gap-2">
+          <div>No timers available</div>
+          <button 
+            onClick={addNewTimer}
+            className="px-2 py-1 sm:px-3 sm:py-1.5 bg-purple-700 text-white text-sm rounded hover:bg-purple-800 transition-colors"
+          >
+            Add Timer
+          </button>
+        </div>
       )}
       <footer className="fixed bottom-0 w-full p-2 sm:p-4 text-center text-sm">
         <a href="https://piotrzientara.pl" className="hover:text-gray-700 transition-colors">
