@@ -87,6 +87,16 @@ export default function Home() {
     }
   };
 
+  const deleteTimer = () => {
+    if (window.confirm('Czy na pewno chcesz usunąć ten timer?')) {
+      setTimers(prev => {
+        const newTimers = prev.filter((_, index) => index !== currentTimerIndex);
+        return newTimers;
+      });
+      setCurrentTimerIndex(prev => Math.min(prev, Math.max(0, timers.length - 2)));
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4">
       {timers.length > 0 ? (
@@ -122,6 +132,12 @@ export default function Home() {
               className="mt-4 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors"
             >
               Dodaj Timer
+            </button>
+            <button 
+              onClick={deleteTimer}
+              className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+            >
+              Usuń Timer
             </button>
           </div>
         </>
