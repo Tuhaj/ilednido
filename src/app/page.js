@@ -112,19 +112,19 @@ export default function Home() {
           <div className="flex gap-2">
             <button 
               onClick={editTimer}
-              className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+              className="mt-4 px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800 transition-colors"
             >
               Edit Timer
             </button>
             <button 
               onClick={addNewTimer}
-              className="mt-4 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors"
+              className="mt-4 px-4 py-2 bg-purple-700 text-white rounded hover:bg-purple-800 transition-colors"
             >
               Add Timer
             </button>
             <button 
               onClick={deleteTimer}
-              className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+              className="mt-4 px-4 py-2 bg-red-700 text-white rounded hover:bg-red-800 transition-colors"
             >
               Delete Timer
             </button>
