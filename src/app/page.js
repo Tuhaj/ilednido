@@ -102,17 +102,14 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center justify-center gap-4">
       {timers.length > 0 ? (
         <>
-          <h1 className="text-3xl font-semibold">
+          <h1 
+            className="text-3xl font-semibold cursor-pointer hover:text-blue-500 transition-colors"
+            onClick={toggleTimer}
+          >
             {timers[currentTimerIndex].name} in
           </h1>
           <div className="text-4xl font-bold font-mono">{timeLeft}</div>
           <div className="flex gap-2">
-            <button 
-              onClick={toggleTimer}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-            >
-              Switch Timer
-            </button>
             <button 
               onClick={editTimer}
               className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
