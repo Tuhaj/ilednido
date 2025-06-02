@@ -12,15 +12,11 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('timers');
       return saved ? JSON.parse(saved) : [
-        { name: "Leon's birthday", date: '2025-05-07T00:00:00' },
-        { name: "Aleksander's birthday", date: '2025-06-27T00:00:00' },
-        { name: "First school day", date: '2025-09-02T00:00:00' }
+        { name: "Koniec kadencji Karola Nawrockiego", date: '2030-08-06T00:00:00' }
       ];
     }
     return [
-      { name: "Leon's birthday", date: '2025-05-07T00:00:00' },
-      { name: "Aleksander's birthday", date: '2025-06-27T00:00:00' },
-      { name: "First school day", date: '2025-09-02T00:00:00' }
+      { name: "Koniec kadencji Karola Nawrockiego", date: '2030-08-06T00:00:00' }
     ];
   });
   const [currentTimerIndex, setCurrentTimerIndex] = useState(() => {
