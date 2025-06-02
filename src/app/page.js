@@ -12,11 +12,11 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('timers');
       return saved ? JSON.parse(saved) : [
-        { name: "Koniec kadencji Karola Nawrockiego", date: '2030-08-06T00:00:00' }
+        { name: "Koniec kadencji prezydenta Karola Nawrockiego", date: '2030-08-06T00:00:00' }
       ];
     }
     return [
-      { name: "Koniec kadencji Karola Nawrockiego", date: '2030-08-06T00:00:00' }
+      { name: "Koniec kadencji prezydenta Karola Nawrockiego", date: '2030-08-06T00:00:00' }
     ];
   });
   const [currentTimerIndex, setCurrentTimerIndex] = useState(() => {
