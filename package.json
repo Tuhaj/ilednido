@@ -5,7 +5,7 @@
   "author": "Piotr Zientara",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "export": "next export"

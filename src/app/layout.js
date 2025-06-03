@@ -12,13 +12,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://ilednido.tuhaj.pl'),
   title: "Ile dni do",
-  description: "Simple timers you can store on your own browser",
+  description: "Ile dni do konca kadencji Karola Nawrockiego?",
   openGraph: {
     title: "Ile dni do",
-    description: "Simple timers you can store on your own browser",
+    description: "Ile dni do konca kadencji Karola Nawrockiego?",
     images: [{
-      url: "https://xfaang-assets.s3.eu-west-3.amazonaws.com/seo/timers.jpg",
+      url: "/og-image.svg",
       width: 1200,
       height: 630,
     }],
@@ -26,8 +27,8 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ile dni do",
-    description: "Simple timers you can store on your own browser",
-    images: ["https://xfaang-assets.s3.eu-west-3.amazonaws.com/seo/timers.jpg"],
+    description: "Ile dni do konca kadencji Karola Nawrockiego?",
+    images: ["/og-image.svg"],
   }
 };
 
