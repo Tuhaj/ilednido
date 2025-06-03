@@ -7,32 +7,34 @@ import { EmptyState } from '@/app/components/EmptyState';
 import { Footer } from '@/app/components/Footer';
 
 export default function Home() {
-  const [timeLeft, setTimeLeft] = useState('');
-  const [timers, setTimers] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('timers');
-      return saved ? JSON.parse(saved) : [
-        { name: "Koniec kadencji prezydenta Karola Nawrockiego", date: '2030-08-06T00:00:00' }
-      ];
-    }
-    return [
-      { name: "Koniec kadencji prezydenta Karola Nawrockiego", date: '2030-08-06T00:00:00' }
-    ];
-  });
-  const [currentTimerIndex, setCurrentTimerIndex] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('currentTimerIndex');
-      return saved ? parseInt(saved) : 0;
-    }
-    return 0;
-  });
+  const [timeLeft, setTimeLeft] = useState('Loading...');
+  const [timers, setTimers] = useState([
+    { name: "Koniec kadencji prezydenta Karola Nawrockiego", date: '2030-08-06T00:00:00' }
+  ]);
+  const [currentTimerIndex, setCurrentTimerIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
+  // Load from localStorage after mount
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    const savedTimers = localStorage.getItem('timers');
+    const savedIndex = localStorage.getItem('currentTimerIndex');
+    
+    if (savedTimers) {
+      setTimers(JSON.parse(savedTimers));
+    }
+    if (savedIndex) {
+      setCurrentTimerIndex(parseInt(savedIndex));
+    }
+    setIsLoaded(true);
+  }, []);
+
+  // Save to localStorage when data changes
+  useEffect(() => {
+    if (isLoaded) {
       localStorage.setItem('timers', JSON.stringify(timers));
       localStorage.setItem('currentTimerIndex', currentTimerIndex.toString());
     }
-  }, [timers, currentTimerIndex]);
+  }, [timers, currentTimerIndex, isLoaded]);
 
   useEffect(() => {
     if (!timers.length) return;
