@@ -9,7 +9,7 @@ import { Footer } from '@/app/components/Footer';
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState('Loading...');
   const [timers, setTimers] = useState([
-    { name: "Koniec kadencji prezydenta Karola Nawrockiego", date: '2030-08-06T00:00:00' }
+    { name: "Koniec kadencji Karola Nawrockiego", date: '2030-08-06T00:00:00' }
   ]);
   const [currentTimerIndex, setCurrentTimerIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);

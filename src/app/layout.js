@@ -19,7 +19,7 @@ export const metadata = {
     title: "Ile dni do",
     description: "Ile dni do konca kadencji Karola Nawrockiego?",
     images: [{
-      url: "/og-image.svg",
+      url: "/og-image.jpeg",
       width: 1200,
       height: 630,
     }],
@@ -28,7 +28,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Ile dni do",
     description: "Ile dni do konca kadencji Karola Nawrockiego?",
-    images: ["/og-image.svg"],
+    images: ["/og-image.jpeg"],
   }
 };
 
